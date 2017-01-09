@@ -17,6 +17,7 @@
     float commaNumber_;
     unsigned int countComma_;
     float sousNumber_;
+    unsigned int nbNeg_;
 }
 @property (weak, nonatomic) IBOutlet UILabel *txtLabel;
 
@@ -27,6 +28,7 @@
 @property (assign, nonatomic)float commaNumber;
 @property (assign, nonatomic)unsigned int countComma;
 @property (assign, nonatomic)float sousNumber;
+@property (assign, nonatomic)unsigned int nbNeg;
 
 - (void)treatmentWithNumber:(unsigned int)number;
 - (void)treatmentWithNumberComma:(unsigned int)numberComma;

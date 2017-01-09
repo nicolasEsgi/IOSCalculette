@@ -21,6 +21,7 @@
 @synthesize commaNumber = commaNumber_;
 @synthesize countComma = countComma_;
 @synthesize sousNumber = sousNumber_;
+@synthesize nbNeg = nbNeg_;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -39,6 +40,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)btnNeg:(id)sender {
+    self.nbNeg = 1;
+}
+
 - (void)reinitOpe{
     self.commaNumber = 0;
     self.comma = 0;
@@ -49,24 +54,40 @@
 - (IBAction)btnAdd:(id)sender {
     self.ope = 1;
     _txtLabel.text = @"+";
+    if(self.nbNeg == 1){
+        self.nbr1 *= -1;
+    }
+    self.nbNeg = 0;
     [self reinitOpe];
 }
 
 - (IBAction)btnLess:(id)sender {
     self.ope = 2;
     _txtLabel.text = @"-";
+    if(self.nbNeg == 1){
+        self.nbr1 *= -1;
+    }
+    self.nbNeg = 0;
     [self reinitOpe];
 }
 
 - (IBAction)btnMultiply:(id)sender {
     self.ope = 3;
     _txtLabel.text = @"*";
+    if(self.nbNeg == 1){
+        self.nbr1 *= -1;
+    }
+    self.nbNeg = 0;
     [self reinitOpe];
 }
 
 - (IBAction)btnDivision:(id)sender {
     self.ope = 4;
     _txtLabel.text = @"/";
+    if(self.nbNeg == 1){
+        self.nbr1 *= -1;
+    }
+    self.nbNeg = 0;
     [self reinitOpe];
 }
 
@@ -186,6 +207,9 @@
 }
 - (IBAction)btnEqual:(id)sender {
     NSString* str;
+    if(self.nbNeg == 1){
+        self.nbr2 *= -1;
+    }
     switch (self.ope) {
         case 1:
             self.nbr1 = self.nbr1 + self.nbr2;
@@ -204,13 +228,13 @@
     }
     str = [NSString stringWithFormat:@"%g", self.nbr1];
     _txtLabel.text = str;
-
     self.nbr2 = 0;
     self.ope = 0;
     self.comma = 0;
     self.commaNumber = 0;
     self.countComma = 0;
     self.sousNumber = 0;
+    self.nbNeg = 0;
 }
 - (IBAction)btnDot:(id)sender {
     self.comma = 1;
@@ -230,6 +254,7 @@
     self.commaNumber = 0;
     self.countComma = 0;
     self.countComma = 0;
+    self.nbNeg = 0;
 }
 
 - (IBAction)btnAC:(id)sender {
@@ -239,6 +264,7 @@
     self.comma = 0;
     self.commaNumber = 0;
     self.countComma = 0;
+    self.nbNeg = 0;
     NSString* str;
     str = [NSString stringWithFormat:@"%g", self.nbr1];
     _txtLabel.text = str;
